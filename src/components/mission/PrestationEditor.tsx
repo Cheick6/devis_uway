@@ -532,14 +532,21 @@ export function PrestationEditor({ prestation, visible, onClose }: Props): React
   };
 
   const handleDelete = () => {
-    Alert.alert('Supprimer la prestation', 'Cette action est irréversible.', [
-      { text: 'Annuler', style: 'cancel' },
-      {
-        text: 'Supprimer',
-        style: 'destructive',
-        onPress: () => { deletePrestation(prestation.id); onClose(); },
-      },
-    ]);
+    if (Platform.OS === 'web') {
+      if (window.confirm('Supprimer cette prestation ? Cette action est irréversible.')) {
+        deletePrestation(prestation.id);
+        onClose();
+      }
+    } else {
+      Alert.alert('Supprimer la prestation', 'Cette action est irréversible.', [
+        { text: 'Annuler', style: 'cancel' },
+        {
+          text: 'Supprimer',
+          style: 'destructive',
+          onPress: () => { deletePrestation(prestation.id); onClose(); },
+        },
+      ]);
+    }
   };
 
   return (
