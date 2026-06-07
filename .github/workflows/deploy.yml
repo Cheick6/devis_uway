@@ -35,8 +35,10 @@ jobs:
         env:
           EXPO_BASE_URL: /devis_uway
 
-      - name: Add SPA fallback
-        run: cp dist/index.html dist/404.html
+      - name: Fix asset paths for GitHub Pages
+        run: |
+          sed -i 's|"/_expo/|"/devis_uway/_expo/|g' dist/index.html
+          cp dist/index.html dist/404.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
