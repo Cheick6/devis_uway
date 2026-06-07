@@ -6,7 +6,7 @@
 
 import type { Devis, LigneDevis, Recapitulatif } from '@/types/devis';
 import type { DevisMission } from '@/types/mission';
-import { genererHTMLDevis } from './exportPDF';
+import { genererHTMLDevis } from './exportPDFBase';
 import { buildMissionHTML } from './missionPDFTemplate';
 
 function printHTML(html: string): void {
