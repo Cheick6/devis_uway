@@ -18,7 +18,8 @@
     },
     "web": {
       "bundler": "metro",
-      "baseUrl": "/devis_uway"
+      "baseUrl": "/devis_uway",
+      "output": "single"
     },
     "plugins": [
       "expo-router"
