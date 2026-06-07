@@ -115,8 +115,7 @@ export function buildMissionHTML(mission: DevisMission): string {
         <div class="societe-nom">${SOCIETE_INFO.nom}</div>
         <div class="societe-detail">
           ${SOCIETE_INFO.adresse}<br/>
-          Siret&nbsp;: ${SOCIETE_INFO.siret}<br/>
-          Autorisation d'exercice&nbsp;: ${SOCIETE_INFO.autorisationExercice}<br/>
+          Autorisation CNAPS&nbsp;: ${SOCIETE_INFO.autorisationExercice}<br/>
           Tél&nbsp;: ${SOCIETE_INFO.telephone}<br/>
           @&nbsp;: ${SOCIETE_INFO.email}
         </div>
@@ -210,7 +209,7 @@ export function buildMissionHTML(mission: DevisMission): string {
     <div class="footer-nom">${SOCIETE_INFO.nom}</div>
     <div class="footer-addr">${SOCIETE_INFO.adresse}</div>
     <div class="footer-cnaps">Numéro d'autorisation CNAPS&nbsp;: ${SOCIETE_INFO.autorisationExercice}</div>
-    <div class="footer-siret">SIRET N°${SOCIETE_INFO.siret}</div>
+
     <div class="footer-legal">Art. L612-14 du CSI&nbsp;: L'autorisation d'exercice ne confère aucune
       prérogative de puissance publique à l'entreprise ou aux personnes qui en bénéficient.</div>
   </div>

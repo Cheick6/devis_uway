@@ -39,7 +39,7 @@ function buildHeader(devis: Devis): string {
           <h1>${SOCIETE_INFO.nom}</h1>
           <p>${SOCIETE_INFO.adresse}</p>
           <p>${SOCIETE_INFO.telephone} | ${SOCIETE_INFO.email}</p>
-          <p>SIRET : ${SOCIETE_INFO.siret}</p>
+          <p>Autorisation CNAPS : ${SOCIETE_INFO.autorisationExercice}</p>
         </div>
       </div>
       <div class="header-right">
@@ -316,7 +316,7 @@ export function genererHTMLDevis(
         <p>${devis.conditionsGenerales}</p>
       </div>
       <div class="footer">
-        <span>${SOCIETE_INFO.nom} — ${SOCIETE_INFO.siret}</span>
+        <span>${SOCIETE_INFO.nom} — CNAPS ${SOCIETE_INFO.autorisationExercice}</span>
         <span>Réf. ${devis.clientInfo.reference}</span>
         <span>Généré le ${new Date().toLocaleDateString('fr-FR')}</span>
       </div>
