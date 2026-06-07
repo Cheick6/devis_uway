@@ -18,7 +18,6 @@
     },
     "web": {
       "bundler": "metro",
-      "baseUrl": "/devis_uway",
       "output": "single"
     },
     "plugins": [
