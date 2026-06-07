@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Alert,
   Modal,
+  Platform,
 } from 'react-native';
 import { useMissionStore } from '@/store/missionStore';
 import { InputField } from '@/components/ui/InputField';
@@ -274,12 +275,18 @@ function LigneRow({
         </View>
         <TouchableOpacity
           style={styles.deleteBtn}
-          onPress={() =>
-            Alert.alert('Supprimer', 'Supprimer cette ligne ?', [
-              { text: 'Annuler', style: 'cancel' },
-              { text: 'Supprimer', style: 'destructive', onPress: () => deleteLigne(prestationId, ligne.id) },
-            ])
-          }
+          onPress={() => {
+            if (Platform.OS === 'web') {
+              if (window.confirm('Supprimer cette ligne de facturation ?')) {
+                deleteLigne(prestationId, ligne.id);
+              }
+            } else {
+              Alert.alert('Supprimer', 'Supprimer cette ligne ?', [
+                { text: 'Annuler', style: 'cancel' },
+                { text: 'Supprimer', style: 'destructive', onPress: () => deleteLigne(prestationId, ligne.id) },
+              ]);
+            }
+          }}
         >
           <Text style={styles.deleteBtnText}>✕</Text>
         </TouchableOpacity>
