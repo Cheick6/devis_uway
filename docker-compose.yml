@@ -1,0 +1,17 @@
+services:
+  devis-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"   # Metro bundler
+      - "19006:19006" # Expo web (navigateur)
+    environment:
+      - NODE_ENV=development
+      - EXPO_NO_DOCTOR=1
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    volumes:
+      - .:/app
+      - /app/node_modules  # isoler node_modules du host
+    restart: unless-stopped
