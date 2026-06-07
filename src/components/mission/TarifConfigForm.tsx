@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Platform } from 'react-native';
 import { useMissionStore } from '@/store/missionStore';
 import { SectionCard } from '@/components/ui/SectionCard';
 import { COLORS } from '@/constants/taux';
@@ -146,14 +146,20 @@ function StatutRow({ statut }: { statut: StatutAgent }): React.ReactElement {
   };
 
   const handleDelete = () => {
-    Alert.alert(
-      'Supprimer le statut',
-      `Supprimer "${statut.nom}" ? Les lignes liées passeront en saisie manuelle.`,
-      [
-        { text: 'Annuler', style: 'cancel' },
-        { text: 'Supprimer', style: 'destructive', onPress: () => deleteStatut(statut.id) },
-      ],
-    );
+    if (Platform.OS === 'web') {
+      if (window.confirm(`Supprimer "${statut.nom}" ? Les lignes liées passeront en saisie manuelle.`)) {
+        deleteStatut(statut.id);
+      }
+    } else {
+      Alert.alert(
+        'Supprimer le statut',
+        `Supprimer "${statut.nom}" ? Les lignes liées passeront en saisie manuelle.`,
+        [
+          { text: 'Annuler', style: 'cancel' },
+          { text: 'Supprimer', style: 'destructive', onPress: () => deleteStatut(statut.id) },
+        ],
+      );
+    }
   };
 
   return (
@@ -412,15 +418,16 @@ const styles = StyleSheet.create({
     borderColor: COLORS.border,
     borderRadius: 6,
     overflow: 'hidden',
-    width: 80,
+    width: 110,
   },
   inputStatutTaux: {
     flex: 1,
+    minWidth: 60,
     textAlign: 'center',
     fontWeight: '700',
     borderWidth: 0,
     paddingVertical: 7,
-    paddingHorizontal: 4,
+    paddingHorizontal: 6,
     backgroundColor: COLORS.white,
   },
   statutTauxSuffix: {
