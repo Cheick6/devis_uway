@@ -12,7 +12,7 @@ import {
   buildFeuilleRecap,
   buildFeuilleParametres,
   buildFeuillesMission,
-} from './exportExcel';
+} from './exportExcelBase';
 
 function downloadWorkbook(wb: XLSX.WorkBook, fileName: string): void {
   const wbout = XLSX.write(wb, { type: 'array', bookType: 'xlsx' });
